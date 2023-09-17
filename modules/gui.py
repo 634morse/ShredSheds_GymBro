@@ -95,7 +95,7 @@ class EstWeightsTab(ttk.Frame):
         
     def create_est_weight(self):
         self.Entry_frame = ttk.Frame(self)
-        self.Entry_frame.grid(row = 25, column = 0, sticky = tk.W, pady = 10, padx=10)
+        self.Entry_frame.grid(row = 0, column = 0, sticky = tk.W, pady = 10, padx=10)
 
         self.exercises = ['Barbell Bench Press', 'Barbell Squat', 'Barbell Deadlift']
         self.est_weight_exercise_label = ttk.Label(self.Entry_frame, text='Exercise')
@@ -108,11 +108,33 @@ class EstWeightsTab(ttk.Frame):
         self.rep_range_entry = ttk.Entry(self.Entry_frame, width=25)
         self.rep_range_entry.grid(row= 1, column= 1, sticky= tk.W, pady = 10, padx=10)
 
+        self.button = ttk.Button(self.Entry_frame, text="Calculate Weight", command=self.insert_calculations)
+        self.button.grid(row=3, column= 1, sticky= W, pady = 10, padx=10)
+
     def create_est_weight_treeview(self):
         self.Treeview_Frame = ttk.Frame(self)
         self.Treeview_Frame.grid(row= 0, column= 1, rowspan=5, padx=0, pady=10, sticky=(N, S, E, W))
-        self.Treeview = ttk.Treeview(self.Treeview_Frame, height=8, column=("column1","column2","column3", "column4"), show='headings')
+        self.Treeview = ttk.Treeview(self.Treeview_Frame, height=8, column=("column1","column2"), show='headings')
         self.Treeview.grid(row= 0, column=3)
 
+        # Set the column headings
+        self.Treeview.heading("#1", text="Reps")
+        self.Treeview.heading("#2", text="Weight")
+         
+        #Define the column widths
+        self.Treeview.column("#1", width=75)
+        self.Treeview.column("#2", width=75)
+
+    def insert_calculations(self):
+        result = db_handler.Get_Est_Rep_Weights(self.exercise_combobox.get(), self.rep_range_entry.get())
+        #result = db_handler.Get_Est_Rep_Weights("Barbell Squat", "1-3")
+        result = result.est_weights
+        
+        for key, value in result.items():
+            self.Treeview.insert("", "end", values=(key, value))
+
+        print(result)
+
+    
 
     

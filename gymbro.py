@@ -1,6 +1,6 @@
 from modules import gui
 from modules import db_handler
-from modules import calculations
+#from modules import calculations
 
 if __name__ == "__main__":
     #Initializing Database

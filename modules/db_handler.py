@@ -1,6 +1,6 @@
 import sqlite3
 import datetime
-import calculations
+#import calculations
 
 class Database_Intitialization:
     def __init__(self, database_name):
@@ -60,16 +60,13 @@ class Database_Handler:
         connection.close()
         return result
 
-# exercise = "Bench Press"
 class Get_Est_Rep_Weights:
     def __init__(self, exercise, rep_range):
         self.exercise_max = self.get_maxes(exercise)
         self.exercise_max = self.exercise_max
-        print(self.exercise_max)
 
-        self.est_weights = calculations.Epley_Est_Calc(self.exercise_max, rep_range)
-        # est_weights = calculations.Epley_Est_Calc(result[0], rep_range)
-        print(self.est_weights)
+        self.est_weights = self.Epley_Est_Calc(self.exercise_max, rep_range)
+
 
     def get_maxes (self, exercise):
         connection = sqlite3.connect('gymbro.db')
@@ -84,11 +81,27 @@ class Get_Est_Rep_Weights:
         cursor.execute(query, (exercise,))
         result = cursor.fetchone()
         connection.close()
-        return result[0]
+        if result is not None:
+            return result[0]
+        else:
+            return None
+    
+    def Epley_Est_Calc(self, weightmax, rep_range):
+        start_str, end_str = rep_range.split('-')
+        start = int(start_str)
+        end = int(end_str)
+        rep_range = (start_str, end_str)
+        est_weights = {}
 
-# est_weights = calculations.Epley_Est_Calc(result[0], "1-5")
+        for rep in range(start, end + 1):
+            est_weight = weightmax / (1 + 0.0333 * rep)
+            est_weights[rep] = round(est_weight)
+        
+        return est_weights
+# # est_weights = calculations.Epley_Est_Calc(result[0], "1-5")
 
 test = Get_Est_Rep_Weights("Bench Press", "1-3")
+print(test.est_weights)
 
     
 
