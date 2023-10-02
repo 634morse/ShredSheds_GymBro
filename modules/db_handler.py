@@ -66,6 +66,52 @@ class Database_Handler:
         connection.commit()
         connection.close()
         return result
+    
+    def get_weight_pr_progression_6months(self):
+        connection = sqlite3.connect('gymbro.db')
+        cursor = connection.cursor()
+        data = """
+                WITH OldestAndNewest AS (
+                    SELECT
+                        Exercise,
+                        Reps,
+                        MIN(Date) AS OldestDate,
+                        MAX(Date) AS NewestDate
+                    FROM WEIGHT_MAXES
+                    WHERE Date >= DATE('now', '-6 months')
+                    GROUP BY Exercise, Reps
+                ),
+                WeightDifference AS (
+                    SELECT
+                        OAN.Exercise,
+                        OAN.Reps,
+                        OAN.OldestDate,
+                        OAN.NewestDate,
+                        W1.Weight AS OldestWeight,
+                        W2.Weight AS NewestWeight,
+                        (W2.Weight - W1.Weight) AS WeightDifference
+                    FROM OldestAndNewest OAN
+                    JOIN WEIGHT_MAXES W1
+                        ON OAN.Exercise = W1.Exercise
+                        AND OAN.Reps = W1.Reps
+                        AND OAN.OldestDate = W1.Date
+                    JOIN WEIGHT_MAXES W2
+                        ON OAN.Exercise = W2.Exercise
+                        AND OAN.Reps = W2.Reps
+                        AND OAN.NewestDate = W2.Date
+                )
+                SELECT DISTINCT
+                    Exercise,
+                    Reps,
+                    WeightDifference
+                FROM WeightDifference
+                ORDER BY Exercise ASC, Reps ASC;
+               """
+        cursor.execute(data)
+        result = cursor.fetchall()
+        connection.commit()
+        connection.close()
+        return result
 
 class Get_Est_Rep_Weights:
     def __init__(self, exercise, rep_range):
