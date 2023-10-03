@@ -67,10 +67,10 @@ class Database_Handler:
         connection.close()
         return result
     
-    def get_weight_pr_progression_6months(self):
+    def get_weight_pr_progression_6months(self, months):
         connection = sqlite3.connect('gymbro.db')
         cursor = connection.cursor()
-        data = """
+        data = f"""
                 WITH OldestAndNewest AS (
                     SELECT
                         Exercise,
@@ -78,7 +78,7 @@ class Database_Handler:
                         MIN(Date) AS OldestDate,
                         MAX(Date) AS NewestDate
                     FROM WEIGHT_MAXES
-                    WHERE Date >= DATE('now', '-6 months')
+                    WHERE Date >= DATE('now', '{months} months')
                     GROUP BY Exercise, Reps
                 ),
                 WeightDifference AS (

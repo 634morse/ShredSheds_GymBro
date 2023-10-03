@@ -35,9 +35,9 @@ class WeightMaxesTab(ttk.Frame):
         self.create_maxes_treeview()
         self.refresh_maxes_treeview()
         self.create_pr_track_treeview()
-        self.refresh_pr_progression_treeview()
-        self.schedule_refresh(self.refresh_maxes_treeview)
-        self.schedule_refresh(self.refresh_pr_progression_treeview)
+        #self.refresh_pr_progression_treeview()
+        #self.schedule_refresh(self.refresh_maxes_treeview)
+        #self.schedule_refresh(self.refresh_pr_progression_treeview)
 
     def create_maxes_insertions(self):
         self.Entry_frame = ttk.Frame(self)
@@ -85,10 +85,20 @@ class WeightMaxesTab(ttk.Frame):
 
         self.PR_Track_Treeview_Frame = ttk.Frame(self)
         self.PR_Track_Treeview_Frame.grid(row= 4, column= 1, rowspan=2, padx=0, pady=10, sticky=(N, S, E, W))
-        self.Title_Label = ttk.Label(self.PR_Track_Treeview_Frame, text="                                   6 Month Weight Progession")
-        self.Title_Label.grid(row= 1, column= 1, sticky=(W), pady=10, padx=10)
+        self.Title_Label = ttk.Label(self.PR_Track_Treeview_Frame, text="Weight Progession (Months)")
+        self.Title_Label.grid(row= 1, column= 0, sticky=(W), pady=0, padx=0)
+        self.rbvar = tk.StringVar()
         self.PR_Track_Treeview = ttk.Treeview(self.PR_Track_Treeview_Frame, height=5, column=("column1","column2", "column3"), show='headings')
-        self.PR_Track_Treeview.grid(row= 4, column=1)
+        self.PR_Track_Treeview.grid(row= 4, column=0)
+        self.radiobutton_3_months = ttk.Radiobutton(self.PR_Track_Treeview_Frame, text='3', value='-3', variable=self.rbvar, command=lambda: WeightMaxesTab.refresh_pr_progression_treeview(self, self.rbvar.get()))
+        self.radiobutton_3_months.grid(row=1, column=1)
+        self.radiobutton_6_months = ttk.Radiobutton(self.PR_Track_Treeview_Frame, text='6', value='-6', variable=self.rbvar, command=lambda: WeightMaxesTab.refresh_pr_progression_treeview(self, self.rbvar.get()))
+        self.radiobutton_6_months.grid(row=1, column=3)
+        self.radiobutton_9_months = ttk.Radiobutton(self.PR_Track_Treeview_Frame, text='9', value='-9', variable=self.rbvar, command=lambda: WeightMaxesTab.refresh_pr_progression_treeview(self, self.rbvar.get()))
+        self.radiobutton_9_months.grid(row=1, column=4, sticky=W)
+        self.radiobutton_12_months = ttk.Radiobutton(self.PR_Track_Treeview_Frame, text='12', value='-12', variable=self.rbvar, command=lambda: WeightMaxesTab.refresh_pr_progression_treeview(self, self.rbvar.get()))
+        self.radiobutton_12_months.grid(row=1, column=5, sticky=W)
+
 
         # Set the column headings
         self.PR_Track_Treeview.heading("#1", text="Exercise")
@@ -107,10 +117,10 @@ class WeightMaxesTab(ttk.Frame):
         for row in result:
             self.Treeview.insert("", "end", values=(row[0], row[1], row[2], row[3]))
     
-    def refresh_pr_progression_treeview(self):
+    def refresh_pr_progression_treeview(self, months):
         for i in self.PR_Track_Treeview.get_children():
             self.PR_Track_Treeview.delete(i)
-        result = db_handler.Database_Handler.get_weight_pr_progression_6months(self)
+        result = db_handler.Database_Handler.get_weight_pr_progression_6months(self, months)
         for row in result:
             self.PR_Track_Treeview.insert("", "end", values=(row[0], row[1], row[2]))
 
