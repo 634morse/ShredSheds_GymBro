@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 import tkinter as tk
 from idlelib.tooltip import Hovertip
 from ttkwidgets import tooltips
@@ -12,7 +13,7 @@ class GymBro(tk.Tk):
         self.w = 650
         self.h = 400
         self.title('SHRED SHED Presents - GymBro')
-        self.iconbitmap('logo.ico')
+        self.iconbitmap('data\images\logo.ico')
         self.geometry(f"{self.w}x{self.h}")
         self.notebook = ttk.Notebook(self, width= self.w, height= self.h)
         self.notebook.grid()
@@ -144,7 +145,7 @@ class EstWeightsTab(ttk.Frame):
         self.Entry_frame = ttk.Frame(self)
         self.Entry_frame.grid(row = 0, column = 0, sticky = tk.W, pady = 10, padx=10)
 
-        self.exercises = ['Barbell Bench Press', 'Barbell Squat', 'Barbell Deadlift']
+        self.exercises = exercises.exercises
         self.est_weight_exercise_label = ttk.Label(self.Entry_frame, text='Exercise')
         self.est_weight_exercise_label.grid(row = 0, column = 0, sticky = tk.W, pady = 10, padx=10)
         self.est_weigt_exercise_combobox = self.exercise_combobox = ttk.Combobox(self.Entry_frame, values=self.exercises, width=22, state='readonly')
@@ -174,9 +175,10 @@ class EstWeightsTab(ttk.Frame):
 
     def insert_calculations(self):
         result = db_handler.Get_Est_Rep_Weights(self.exercise_combobox.get(), self.rep_range_entry.get())
-        #result = db_handler.Get_Est_Rep_Weights("Barbell Squat", "1-3")
         result = result.est_weights
         
+        for i in self.Treeview.get_children():
+            self.Treeview.delete(i)
         for key, value in result.items():
             self.Treeview.insert("", "end", values=(key, value))
 

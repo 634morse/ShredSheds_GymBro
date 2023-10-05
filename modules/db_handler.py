@@ -1,5 +1,7 @@
 import sqlite3
 import datetime
+from tkinter import messagebox
+import re
 #import calculations
 
 class Database_Intitialization:
@@ -115,7 +117,14 @@ class Database_Handler:
 
 class Get_Est_Rep_Weights:
     def __init__(self, exercise, rep_range):
+        self.range_pattern = r'\d-\d'
+        if not re.match(self.range_pattern, rep_range):
+            messagebox.showerror("Error", "Range format invalid, must be in the format of 1-3")
+            return
         self.exercise_max_data = self.get_maxes(exercise)
+        if self.exercise_max_data == "No PR data for selected exercise":
+            messagebox.showerror("Error", "No PR data for selected exercise")
+            return
         self.exercise_max_data = self.exercise_max_data
         self.exercise_max = self.exercise_max_data[0]
         self.exercise_reps = self.exercise_max_data[1]
@@ -123,7 +132,7 @@ class Get_Est_Rep_Weights:
         self.est_weights = self.Epley_Est_Calc(self.exercise_max, self.exercise_reps, rep_range)
 
 
-    def get_maxes (self, exercise):
+    def get_maxes(self, exercise):
         connection = sqlite3.connect('gymbro.db')
         cursor = connection.cursor()
         query = """
@@ -139,7 +148,8 @@ class Get_Est_Rep_Weights:
         if result is not None:
             return result
         else:
-            return None
+            return "No PR data for selected exercise"
+            
     
     def Epley_Est_Calc(self, weightmax, reps, rep_range):
         start_str, end_str = rep_range.split('-')
