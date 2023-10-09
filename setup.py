@@ -11,7 +11,7 @@ install_requires = [
     'ttkwidgets'
 ]
 
-package_dir = {'': 'ShredSheds_GymBro'}
+package_dir = {'': 'modules'}
 
 setup(
     name=name,
