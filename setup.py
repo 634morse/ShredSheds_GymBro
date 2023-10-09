@@ -20,5 +20,5 @@ setup(
     author=author,
     url=url,
     install_requires= install_requires,
-    package_dir=package_dir
+    packages=find_packages()
 )
