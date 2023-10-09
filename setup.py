@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 name = "GymBro"
 version = "1.0.0"
@@ -20,4 +20,5 @@ setup(
     author=author,
     url=url,
     install_requires= install_requires,
+    package_dir=package_dir
 )
