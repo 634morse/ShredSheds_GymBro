@@ -2,7 +2,6 @@ import sqlite3
 import datetime
 from tkinter import messagebox
 import re
-#import calculations
 
 class Database_Intitialization:
     def __init__(self, database_name):
@@ -47,7 +46,9 @@ class Database_Handler:
         weight = weight_entry.get()
         reps = reps_entry.get()
         date = datetime.date.today()
-
+        if not type(reps) == int or not type(weight) == int:
+            messagebox.showerror("Error", "Weight and Rep values must be integers")
+            return
         connection = sqlite3.connect('gymbro.db')
         cursor = connection.cursor()
         insert_sql = "INSERT INTO WEIGHT_MAXES (exercise, weight, reps, date) VALUES (?, ?, ?, ?)"
@@ -69,7 +70,7 @@ class Database_Handler:
         connection.close()
         return result
     
-    def get_weight_pr_progression_6months(self, months):
+    def get_weight_pr_progression_months(self, months):
         connection = sqlite3.connect('gymbro.db')
         cursor = connection.cursor()
         data = f"""

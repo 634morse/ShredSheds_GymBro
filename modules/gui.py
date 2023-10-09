@@ -121,7 +121,7 @@ class WeightMaxesTab(ttk.Frame):
     def refresh_pr_progression_treeview(self, months):
         for i in self.PR_Track_Treeview.get_children():
             self.PR_Track_Treeview.delete(i)
-        result = db_handler.Database_Handler.get_weight_pr_progression_6months(self, months)
+        result = db_handler.Database_Handler.get_weight_pr_progression_months(self, months)
         for row in result:
             self.PR_Track_Treeview.insert("", "end", values=(row[0], row[1], row[2]))
 
