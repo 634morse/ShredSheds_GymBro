@@ -11,6 +11,8 @@ install_requires = [
     'ttkwidgets'
 ]
 
+package_dir = {'': 'SHREDSHEDS_GYMBRO'}
+
 setup(
     name=name,
     version=version,
