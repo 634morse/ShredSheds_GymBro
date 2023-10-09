@@ -20,5 +20,6 @@ setup(
     author=author,
     url=url,
     install_requires= install_requires,
-    packages=["modules", "data"]
+    packages=find_packages(),
+    package_dir={'GymBro': '.'}
 )
