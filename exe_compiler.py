@@ -15,5 +15,5 @@ setup(
     version="0.1",
     description="WeightLifting PR App",
     options={"build_exe": build_exe_options},
-    executables=[Executable("gymbro.py", base=base, icon="data/images/logo.ico")],
+    executables=[Executable("gymbro.py", base=base)],
 )
