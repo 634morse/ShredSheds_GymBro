@@ -11,8 +11,6 @@ install_requires = [
     'ttkwidgets'
 ]
 
-# package_dir = {'': 'modules'}
-
 setup(
     name=name,
     version=version,
@@ -21,5 +19,5 @@ setup(
     url=url,
     install_requires= install_requires,
     packages=find_packages(),
-    package_dir={'GymBro': '.'}
+    package_dir={'': 'src'}
 )
