@@ -8,7 +8,10 @@ author_email = "634morse@gmail.com"
 url = "https://github.com/634morse/ShredSheds_GymBro"
 
 install_requires = [
-    'ttkwidgets'
+    'ttkwidgets',
+    'tkinter',
+    'sqlite3',
+    're'
 ]
 
 setup(
