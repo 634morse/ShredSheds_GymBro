@@ -4,7 +4,7 @@ from tkinter import messagebox
 import tkinter as tk
 from ttkwidgets import tooltips
 from modules import db_handler
-from data import exercises
+from modules import exercises
 
 class GymBro(tk.Tk):
     def __init__(self):
