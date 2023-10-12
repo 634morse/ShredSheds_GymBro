@@ -9,8 +9,7 @@ url = "https://github.com/634morse/ShredSheds_GymBro"
 
 install_requires = [
     'ttkwidgets',
-    'tkinter',
-    'sqlite3'
+    'tkinter'
 ]
 
 setup(
