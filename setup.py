@@ -18,6 +18,6 @@ setup(
     author=author,
     url=url,
     install_requires= install_requires,
-    packages=find_packages(),
+    packages=find_packages(exclude=["exe_compiler.py"]),
     package_dir={'': 'GymBro'}
 )
