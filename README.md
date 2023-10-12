@@ -22,8 +22,8 @@ On top of being able to store your PR's in a database, the application can also 
 - #### Progression Table
     - Displays progress over a period of 3, 6, 9 or 12 months
     - it grabs oldest and newest data within the selected time range for recorded exercises and gets the difference (It does this for each recorded rep range as well, so you can see progress even if your 1RM has not improved yet)
-- #### Epsley Calculator
-    - Calculates estimated weight to lift for a range of reps based on the Epsley equation and recorded 1RM data stored
+- #### Epley Calculator
+    - Calculates estimated weight to lift for a range of reps based on the Epley equation and recorded 1RM data stored
     - https://www.vcalc.com/wiki/epley-formula-1-rep-max
 
 </details>
