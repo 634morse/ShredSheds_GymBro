@@ -19,5 +19,5 @@ setup(
     url=url,
     install_requires= install_requires,
     packages=find_packages(),
-    package_dir={'': 'src'}
+    package_dir={'': 'GymBro'}
 )
