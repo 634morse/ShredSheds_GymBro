@@ -43,8 +43,8 @@ class Database_Handler:
 
     def insert_maxes (exercise_combobox, weight_entry, reps_entry):
         exercise = exercise_combobox.get()
-        weight = weight_entry.get()
-        reps = reps_entry.get()
+        weight = int(weight_entry.get())
+        reps = int(reps_entry.get())
         date = datetime.date.today()
         if not type(reps) == int or not type(weight) == int:
             messagebox.showerror("Error", "Weight and Rep values must be integers")
