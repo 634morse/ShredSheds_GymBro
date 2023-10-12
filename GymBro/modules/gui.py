@@ -12,7 +12,6 @@ class GymBro(tk.Tk):
         self.w = 650
         self.h = 400
         self.title('SHRED SHED Presents - GymBro')
-        #self.iconbitmap('data\images\logo.ico')
         self.geometry(f"{self.w}x{self.h}")
         self.notebook = ttk.Notebook(self, width= self.w, height= self.h)
         self.notebook.grid()
