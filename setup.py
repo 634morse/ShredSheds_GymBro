@@ -7,6 +7,7 @@ author = "Corey Patterson"
 author_email = "634morse@gmail.com"
 url = "https://github.com/634morse/ShredSheds_GymBro"
 
+# For 3rd party packages, not standard libraries 
 install_requires = [
     'ttkwidgets',
 ]

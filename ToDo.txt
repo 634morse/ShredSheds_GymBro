@@ -1,9 +1,4 @@
 Run through gui and breakup functions where needed and rename tab_weight_maxes
 
-build requirements for package to be installable through pip 
-- requirements
-
-Remove Pycache files
-
 
 More to come

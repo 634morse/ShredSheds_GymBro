@@ -43,9 +43,9 @@ On top of being able to store your PR's in a database, the application can also 
 <details>
 <summary><big>Installation</big></summary>
 
-#### There are 3 ways this can be installed
+#### There are 4 ways this can be installed
 
-### Precompiled exe (WindowswADADa)
+### Precompiled exe (Windows)
 
 Every Version will come with a precompiled exe built from cx_freeze and will be available above along with a hash for verification. This option allows for turn-key use without needing to install any dependencies.
 
@@ -83,4 +83,16 @@ setup(
     executables=[Executable("gymbro.py", base=base, icon="data/images/logo.ico")],
 )
 ```
+
+### Installing with PIP and running straight python
+
+- Make sure PIP is installed
+- Run the following\
+```
+pip install install git+https://github.com/634morse/ShredSheds_GymBro.git@master
+``` 
+
+### Download Zip File/Clone Package
+
+You can also always download the zip file or clone through git ran run python3 gymbro.py
 </details>
