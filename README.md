@@ -97,9 +97,3 @@ pip install install git+https://github.com/634morse/ShredSheds_GymBro.git@master
 
 You can also always download the zip file or clone through git ran run python3 gymbro.py
 </details>
-=======
-![img](data/images/logo.png)
-
-To Download a Zip of a pre_compiled exe
-https://github.com/634morse/GymBro_EXE/archive/refs/heads/main.zip
->>>>>>> 1a5000cc485c9d5801b33cf3eda392b8a96c40d4
