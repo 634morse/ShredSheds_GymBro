@@ -7,11 +7,10 @@ author = "Corey Patterson"
 author_email = "634morse@gmail.com"
 url = "https://github.com/634morse/ShredSheds_GymBro"
 
+# For 3rd party packages, not standard libraries 
 install_requires = [
-    'ttkwidgets'
+    'ttkwidgets',
 ]
-
-# package_dir = {'': 'modules'}
 
 setup(
     name=name,
@@ -20,6 +19,5 @@ setup(
     author=author,
     url=url,
     install_requires= install_requires,
-    # package_dir=package_dir,
-    packages=find_packages()
+    packages=find_packages(exclude=["exe_compiler.py"])
 )

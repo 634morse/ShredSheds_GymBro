@@ -2,10 +2,9 @@ from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
 import tkinter as tk
-from idlelib.tooltip import Hovertip
 from ttkwidgets import tooltips
 from modules import db_handler
-from data import exercises
+from modules import exercises
 
 class GymBro(tk.Tk):
     def __init__(self):
@@ -13,7 +12,6 @@ class GymBro(tk.Tk):
         self.w = 650
         self.h = 400
         self.title('SHRED SHED Presents - GymBro')
-        self.iconbitmap('data\images\logo.ico')
         self.geometry(f"{self.w}x{self.h}")
         self.notebook = ttk.Notebook(self, width= self.w, height= self.h)
         self.notebook.grid()
