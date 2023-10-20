@@ -9,7 +9,7 @@ jobs:
   integrate:
     name: integrate with development
     runs-on: ubuntu-latest
-    secrets: "${{ secrets.TOKEN }}""
+    secrets: "${{ secrets.TOKEN }}"
     steps: 
     - name: Checkout repo
       uses: actions/checkout@v3
