@@ -2,7 +2,8 @@ name: "dev_integration"
 
 on:
   push:
-    branches: [feature/**]
+    branches: 
+      - 'feature/**'
 
 jobs:
   integrate:
