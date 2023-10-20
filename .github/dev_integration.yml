@@ -1,0 +1,23 @@
+jobs:
+  auto_merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Merge PR to Development
+        run: |
+          # Replace with the appropriate branch names
+          BASE_BRANCH="development"
+          FEATURE_BRANCH="${{ github.event.pull_request.head.ref }}"
+          
+          # Authenticate with GitHub using a personal access token or a GitHub token
+          # Replace $GITHUB_TOKEN with your personal access token if needed.
+          gh auth login --with-token <<< "$GITHUB_TOKEN"
+          
+          # Check out the base branch and merge the PR
+          git checkout $BASE_BRANCH
+          gh pr merge $FEATURE_BRANCH --squash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
