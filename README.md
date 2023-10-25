@@ -2,7 +2,6 @@
 
 # ShredSheds_GymBro
 
-<<<<<<< HEAD
 ### Description
 
 GymBro is a Python based gui with the purpose of storing PR (personal record) data from your workouts. With storing it in a sqlite3 database file, you will no longer have to either store PR's in a notebook, excel file or not at all.\
