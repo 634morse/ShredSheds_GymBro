@@ -5,6 +5,10 @@ on:
     branches: 
       - 'feature/**'
 
+permissions:
+  contents: write
+  
+
 jobs:
   integrate:
     name: integrate with development
@@ -18,8 +22,8 @@ jobs:
         branch_name="${branch_name#refs/heads/}"
         echo "The branch name is $branch_name"
 
-         git config --global user.email "you@example.com"
-         git config --global user.name "Your Name"
+        git config --global user.email "bot@email.com"
+        git config --global user.name "integrate_bot"
         git config pull.rebase false
         git config pull.ff only
         git fetch origin development
