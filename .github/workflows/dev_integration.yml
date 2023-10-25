@@ -22,5 +22,5 @@ jobs:
         git fetch origin development
         git checkout development
         git pull origin development
-        git merge --no-ff --no-edit $branch_name
+        git merge --no-ff --no-edit --allow-unrelated-histories $branch_name
         git push origin development
