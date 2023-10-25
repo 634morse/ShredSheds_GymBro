@@ -1,0 +1,26 @@
+name: "dev_integration"
+
+on:
+  push:
+    branches: 
+      - 'feature/**'
+
+jobs:
+  integrate:
+    name: integrate with development
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Checkout repo
+      uses: actions/checkout@v3
+    - name: Merge with development
+      run: |
+        branch_name="${{ github.ref }}"
+        branch_name="${branch_name#refs/heads/}"
+        echo "The branch name is $branch_name"
+        git config pull.rebase false
+        git config pull.ff only
+        git fetch origin development
+        git checkout development
+        git pull origin development
+        git merge --no-ff --no-edit $branch_name
+        git push origin development
