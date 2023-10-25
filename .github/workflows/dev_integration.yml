@@ -17,6 +17,9 @@ jobs:
         branch_name="${{ github.ref }}"
         branch_name="${branch_name#refs/heads/}"
         echo "The branch name is $branch_name"
+
+         git config --global user.email "you@example.com"
+         git config --global user.name "Your Name"
         git config pull.rebase false
         git config pull.ff only
         git fetch origin development
