@@ -18,14 +18,18 @@ jobs:
       uses: actions/checkout@v3
     - name: Merge with development
       run: |
+        # Setting Vars
         branch_name="${{ github.ref }}"
         branch_name="${branch_name#refs/heads/}"
         echo "The branch name is $branch_name"
-
+        
+        # Configuring Settings
         git config --global user.email "bot@email.com"
         git config --global user.name "integrate_bot"
         git config pull.rebase false
         git config pull.ff only
+        
+        # Getting dev and merging
         git fetch origin development
         git checkout development
         git pull origin development
