@@ -19,4 +19,5 @@ jobs:
         echo "The branch name is $branch_name"
         git pull origin development
         git checkout development
-        git merge $branch_name
+        git merge --no-ff --no-edit $branch_name
+        git push origin development
